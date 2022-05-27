@@ -52,6 +52,11 @@ class Room {
 
   private listeners: Listener[];
 
+  /**
+   * Determines when to generate more words.
+   */
+  private _charsBeforeNext: number;
+
   constructor() {
     Logger.print('Generating a new Room object', FILE_PATH);
 
@@ -59,6 +64,8 @@ class Room {
     this.roomKey = Room.generateKey();
     this._players = [];
     this.listeners = [];
+
+    this._charsBeforeNext = 50;
 
     this.characters = WordsLoader.getWords(200);
 
@@ -83,6 +90,10 @@ class Room {
 
   public get host() {
     return this._host;
+  }
+
+  public get testRunning() {
+    return this._lastTestStarted !== undefined;
   }
 
   /**
@@ -203,6 +214,27 @@ class Room {
    */
   public selfDestruct() {
     Room.deleteRoom(this.roomKey);
+  }
+
+  /**
+   * Check each player's `typed` field and generate more words if needed.
+   */
+  public generateMoreWords() {
+    if (!this.testRunning) return;
+
+    let max = -1;
+    this.players.forEach((player) => {
+      if (max < player.typed.length) {
+        max = player.typed.length;
+      }
+    });
+    if (max > this._charsBeforeNext) {
+      this.characters += WordsLoader.getWords(50);
+
+      this._charsBeforeNext += 50;
+
+      this.fireEventListeners(RoomEvent.WORDS_UPDATE);
+    }
   }
 
   /**

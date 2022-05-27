@@ -39,7 +39,17 @@ async function testData(req: Request, res: Response) {
     });
   }
 
+  if (!player.room.testRunning) {
+    Logger.print('Test not running', FILE_PATH, true);
+
+    return res.status(404).json({
+      success: false,
+      error: 'Test not running.',
+    });
+  }
+
   player.setTyped(typed);
+  player.room.generateMoreWords();
 
   res.status(200).json({
     success: true,
