@@ -56,6 +56,8 @@ async function update(req: Request, res: Response) {
           acc: value.acc,
         }));
         break;
+      case RoomEvent.TEST_START:
+        // Pass the starting set of words
       case RoomEvent.WORDS_UPDATE:
         // In data, pass new set of words to players
         data.chars = room.chars;
