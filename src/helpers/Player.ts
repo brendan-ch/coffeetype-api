@@ -148,7 +148,7 @@ class Player {
    * @param id
    */
   public static findPlayer(id: string) {
-    return 
+    return Player._instances.find((value) => value.id === id);
   }
 
   /**
