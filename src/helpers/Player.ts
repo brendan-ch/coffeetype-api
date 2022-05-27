@@ -152,6 +152,13 @@ class Player {
   }
 
   /**
+   * Update the characters typed for the player.
+   */
+  public setTyped(typed: string) {
+    this._typed = typed;
+  }
+
+  /**
    * Remove all references to the player.
    */
   public selfDestruct() {
