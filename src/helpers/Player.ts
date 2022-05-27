@@ -61,6 +61,11 @@ class Player {
    * Calculate the current WPM of the player.
    */
   public get wpm() {
+    // Invalidate if out of bounds
+    if (this._typed.length > this._room.chars.length) {
+      return 0;
+    }
+
     let numWordsTypedCorrectly = 0;
 
     // Time elapsed, in minutes
