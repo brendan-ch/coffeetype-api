@@ -15,7 +15,7 @@ class Room {
   /**
    * Timer default, in milliseconds.
    */
-  public static readonly TIMER_DEFAULT = 30000;
+  public static readonly TIMER_DEFAULT = 35000;
 
   /**
    * List of taken keys.
