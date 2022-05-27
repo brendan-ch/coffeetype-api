@@ -43,6 +43,7 @@ class Room {
    * Undefined if no test running.
    */
   private _lastTestStarted?: Date;
+  private _interval?: any;
 
   /**
    * Generated characters to display and compare typed results against.
@@ -240,6 +241,8 @@ class Room {
 
     setTimeout(() => {
       Logger.print(`Ending test in room ${this.roomKey}`, FILE_PATH);
+      clearInterval(this._interval);
+      this._interval = undefined;
 
       // End the test
       this._lastTestStarted = undefined;
@@ -247,6 +250,12 @@ class Room {
       // Fire event
       this.fireEventListeners(RoomEvent.TEST_END);
     }, Room.TIMER_DEFAULT);
+
+    // Fire an interval every second
+    // that fires the updated test data
+    this._interval = setInterval(() => {
+      this.fireEventListeners(RoomEvent.PLAYERS_UPDATE);
+    }, 1000);
 
     this.fireEventListeners(RoomEvent.TEST_START);
   }
