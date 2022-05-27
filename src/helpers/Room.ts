@@ -247,6 +247,14 @@ class Room {
       // End the test
       this._lastTestStarted = undefined;
 
+      // Clear all players' typed field
+      this.players.forEach((player) => {
+        player.setTyped('');
+      });
+
+      // Regenerate words
+      this.characters = WordsLoader.getWords(200);
+
       // Fire event
       this.fireEventListeners(RoomEvent.TEST_END);
     }, Room.TIMER_DEFAULT);
