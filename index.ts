@@ -7,6 +7,7 @@ import exit from './src/api/post/exit';
 import join from './src/api/post/join';
 import start from './src/api/post/start';
 import testData from './src/api/post/testData';
+import Logger from './src/helpers/Logger';
 
 const app = express();
 app.use(bodyParser.json());
@@ -21,5 +22,5 @@ app.post('/api/post/start', start);
 app.post('/api/post/testData', testData);
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  Logger.print(`Server listening on port ${port}`, 'index.ts');
 });
