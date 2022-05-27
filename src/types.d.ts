@@ -3,10 +3,6 @@
  */
 const enum RoomEvent {
   /**
-   * Fires for a countdown event.
-   */
-  TEST_COUNTDOWN = 'TEST_COUNTDOWN',
-  /**
    * Fires when the test is started.
    */
   TEST_START = 'TEST_START',
