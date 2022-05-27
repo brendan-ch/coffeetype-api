@@ -45,6 +45,8 @@ async function update(req: Request, res: Response) {
 
     // Add a switch statement here
     switch (event) {
+      case RoomEvent.TEST_END:
+        // In data, pass the end results for players
       case RoomEvent.PLAYERS_UPDATE:
         // In data, update the names and IDs of players
         data.players = room.players.map((value) => ({
@@ -58,6 +60,7 @@ async function update(req: Request, res: Response) {
         // In data, pass new set of words to players
         data.chars = room.chars;
         break;
+
       default:
         break;
     }
