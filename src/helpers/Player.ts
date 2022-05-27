@@ -57,6 +57,10 @@ class Player {
     return this._room;
   }
 
+  public get typed() {
+    return this._typed;
+  }
+
   /**
    * Calculate the current WPM of the player.
    */
