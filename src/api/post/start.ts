@@ -43,6 +43,15 @@ async function start(req: Request, res: Response) {
     });
   }
 
+  if (room.testRunning) {
+    Logger.print('Test already running!', FILE_PATH, true);
+
+    return res.status(403).json({
+      success: false,
+      error: 'Test already running!',
+    });
+  }
+
   // Start the test by setting lastTestStarted
   room.startTest();
 
