@@ -54,6 +54,7 @@ async function update(req: Request, res: Response) {
           id: value.id,
           wpm: value.wpm,
           acc: value.acc,
+          host: room.host?.id === value.id,
         }));
         break;
       case RoomEvent.TEST_START:

@@ -68,6 +68,7 @@ class Room {
     this._charsBeforeNext = 50;
 
     this.characters = WordsLoader.getWords(200);
+    // Logger.print(this.characters, FILE_PATH);
 
     // Add itself to the _instances array
     Room.addRoom(this);
