@@ -39,6 +39,15 @@ async function join(req: Request, res: Response) {
     success: true,
     playerId: newPlayer.id,
     roomKey: room.roomKey,
+    data: {
+      players: room.players.map((value) => ({
+        name: value.name,
+        id: value.id,
+        wpm: value.wpm,
+        acc: value.acc,
+        host: room.host?.id === value.id,
+      })),
+    }
   });
 }
 
