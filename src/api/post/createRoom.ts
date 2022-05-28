@@ -28,6 +28,15 @@ async function createRoom(req: Request, res: Response) {
     'success': true,
     'roomKey': newRoom.roomKey,
     'playerId': newPlayer.id,
+    'data': {
+      players: newRoom.players.map((value) => ({
+        name: value.name,
+        id: value.id,
+        wpm: value.wpm,
+        acc: value.acc,
+        host: newRoom.host?.id === value.id,
+      })),
+    },
   });
 }
 
