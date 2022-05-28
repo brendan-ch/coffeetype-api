@@ -102,6 +102,10 @@ class Player {
   }
 
   public get acc() {
+    if (this._typed.length === 0) {
+      return 0;
+    }
+    
     // Count number of characters typed correctly
     let numCharsTypedCorrectly = 0;
 
@@ -111,7 +115,7 @@ class Player {
       }
     }
 
-    return (numCharsTypedCorrectly / this._typed.length) * 100;
+    return (numCharsTypedCorrectly / this._typed.length) * 100.0;
   }
 
   public static generateId(): string {
