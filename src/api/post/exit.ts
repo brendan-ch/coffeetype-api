@@ -20,8 +20,14 @@ async function exit(req: Request, res: Response) {
     });
   }
 
-  // Remove the player
-  Player.deletePlayer(playerId);
+  const player = Player.findPlayer(playerId);
+  // Delete the room if no players left
+  if (player?.room.players.length === 1) {
+    player.room.selfDestruct();
+  }
+
+  player?.selfDestruct();
+
 
   res.status(200).json({
     'success': true,
